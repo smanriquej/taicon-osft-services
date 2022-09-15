@@ -4,9 +4,8 @@
   "description": "",
   "main": "./src/app.js",
   "scripts": {
-    "server": "NODE_ENV=development ./node_modules/.bin/netlify.lambda serve src",
-    "build": "NODE_ENV=production ./node_modules/.bin/netlify.lambda serve src",
-    "start": "node ./src/app.js"
+    "start": "./node_modules/.bin/netlify-lambda serve src",
+    "build": "./node_modules/.bin/netlify-lambda serve src"
   },
   "author": "",
   "license": "ISC",
