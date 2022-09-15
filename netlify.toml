@@ -1,5 +1,3 @@
 [build]
 functions="functions"
 
-[headers.values]
-Access-Control-Allow-Origin = "https://app-taicon-osft.netlify.app"

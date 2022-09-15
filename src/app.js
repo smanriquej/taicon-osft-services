@@ -1,7 +1,7 @@
 const path = require('path');
 
 const express = require('express');
-const serverless = require('serverless-http');
+// const serverless = require('serverless-http');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
@@ -16,10 +16,10 @@ app.use(bodyParser.json());
 app.use('/images', express.static(path.join('backend/images')));
 
 
-const allowedOrigins = ['https://app-taicon-osft.netlify.app']
+const allowedOrigins = ["https://app-taicon-osft.netlify.app", "http://jorges-macbook-pro.local:3000", "http://localhost:3000"]
 
 app.use(cors({
-  origin: "https://app-taicon-osft.netlify.app"
+  origin: allowedOrigins
 }));
 
 // app.use((req, res, next) => {
@@ -34,9 +34,11 @@ app.use(cors({
 // });
 
 // app.use('/indices', indicesRoutes);
-app.use('/.netlify/functions/indices', indicesRoutes);
-app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
-app.use('/.netlify/functions/', authRoutes);
+app.use('/indices', indicesRoutes);
+// app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
+app.use('/indicesFilter', indicesFilterRoutes);
+// app.use('/.netlify/functions/', authRoutes);
+app.use('/', authRoutes);
 
 db.initDb((err, db) => {
   if (err) {
@@ -46,6 +48,6 @@ db.initDb((err, db) => {
   }
 });
 
-module.exports=app;
+// module.exports=app;
 
-module.exports.handler = serverless(app);
+// module.exports.handler = serverless(app);
