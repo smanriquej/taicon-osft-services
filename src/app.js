@@ -19,7 +19,8 @@ app.use(cors());
 
 app.use((req, res, next) => {
   // Set CORS headers so that the React SPA is able to communicate with this server
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  const allowedOrigins = ['https://app-taicon-osft.netlify.app' ]
+  res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
   res.setHeader(
     'Access-Control-Allow-Methods',
     'GET,POST,PUT,PATCH,DELETE,OPTIONS'
