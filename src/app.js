@@ -22,16 +22,16 @@ app.use(cors({
   origin: "https://app-taicon-osft.netlify.app"
 }));
 
-app.use((req, res, next) => {
+// app.use((req, res, next) => {
   // Set CORS headers so that the React SPA is able to communicate with this server
-  res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET,POST,PUT,PATCH,DELETE,OPTIONS'
-  );
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+  // res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
+  // res.setHeader(
+  //   'Access-Control-Allow-Methods',
+  //   'GET,POST,PUT,PATCH,DELETE,OPTIONS'
+  // );
+  // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // next();
+// });
 
 // app.use('/indices', indicesRoutes);
 app.use('/.netlify/functions/indices', indicesRoutes);
