@@ -1,6 +1,7 @@
 const path = require('path');
 
 const express = require('express');
+const serverless = require('serverless-http');
 const bodyParser = require('body-parser');
 
 const indicesRoutes = require('./routes/indices');
@@ -24,9 +25,10 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use('/indices', indicesRoutes);
-app.use('/indicesFilter', indicesFilterRoutes);
-app.use('/', authRoutes);
+// app.use('/indices', indicesRoutes);
+app.use('/.netlify/functions/indices', indicesRoutes);
+app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
+app.use('/.netlify/functions/', authRoutes);
 
 db.initDb((err, db) => {
   if (err) {
@@ -35,3 +37,7 @@ db.initDb((err, db) => {
     app.listen(3200);
   }
 });
+
+module.exports=app;
+
+module.exports.handler = serverless(app);
