@@ -15,11 +15,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/images', express.static(path.join('backend/images')));
 
-app.use(cors());
+
+const allowedOrigins = ['https://app-taicon-osft.netlify.app']
+
+app.use(cors({
+  origin: "https://app-taicon-osft.netlify.app"
+}));
 
 app.use((req, res, next) => {
   // Set CORS headers so that the React SPA is able to communicate with this server
-  const allowedOrigins = ['https://app-taicon-osft.netlify.app' ]
   res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
   res.setHeader(
     'Access-Control-Allow-Methods',
