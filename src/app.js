@@ -22,18 +22,22 @@ app.use(cors({
   origin: allowedOrigins
 }));
 
-// app.use((req, res, next) => {
+app.use((req, res, next) => {
   // Set CORS headers so that the React SPA is able to communicate with this server
-  // res.setHeader('Access-Control-Allow-Origin', allowedOrigins);
-  // res.setHeader(
-  //   'Access-Control-Allow-Methods',
-  //   'GET,POST,PUT,PATCH,DELETE,OPTIONS'
-  // );
+  res.setHeader('Access-Control-Allow-Origin', "*");
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET,POST,PUT,PATCH,DELETE,OPTIONS'
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  // next();
-// });
+  next();
+});
 
-// app.use('/indices', indicesRoutes);
+// app.use('/.netlify/functions/indices', indicesRoutes);
 app.use('/indices', indicesRoutes);
 // app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
 app.use('/indicesFilter', indicesFilterRoutes);
