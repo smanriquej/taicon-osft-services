@@ -5,9 +5,9 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 
-const indicesRoutes = require('./routes/indices');
-const indicesFilterRoutes = require('./routes/indicesfilter');
-const authRoutes = require('./routes/auth');
+const indicesRoutes = require('./routes/indices.js');
+const indicesFilterRoutes = require('./routes/indicesfilter.js');
+const authRoutes = require('./routes/auth.js');
 const db = require('./db');
 
 const app = express();
