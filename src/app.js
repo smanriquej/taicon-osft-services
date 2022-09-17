@@ -18,7 +18,7 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./routes/root'));
 app.use('/indices', require('./routes/indices'));
-app.use('/indicesFilter', require('./routes/indicesfilter'));
+app.use('/indicesFilter', require('./routes/filter'));
 app.use('/auth', require('./routes/auth'));
 
 // app.all('*', (req, res) => {
