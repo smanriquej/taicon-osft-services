@@ -7,12 +7,6 @@ const app = express();
 const db = require('../db');
 const router = Router();
 
-const allowedOrigins = ["https://app-taicon-osft.netlify.app", "http://jorges-macbook-pro.local:3000", "http://localhost:3000"]
-
-app.use(cors({
-  origin: allowedOrigins
-}));
-
 router.get('/', async (req, res, next) => {
   db.getDb()
     .db()
