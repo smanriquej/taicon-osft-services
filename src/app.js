@@ -15,7 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, 'images')));
 app.use('/', require('./routes/root'));
-//app.use('/indicesFilter', require('./routes/indicesfilter'));
+app.use('/indicesFilter', require('./routes/indicesfilter'));
 app.use('/auth', require('./routes/auth'));
 
 // app.all('*', (req, res) => {
@@ -50,7 +50,7 @@ app.use('/auth', require('./routes/auth'));
 // });
 
 // app.use('/.netlify/functions/indices', indicesRoutes);
-app.use('/indices', indicesRoutes);
+//app.use('/indices', indicesRoutes);
 // app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
 //app.use('/indicesFilter', indicesFilterRoutes);
 // app.use('/.netlify/functions/', authRoutes);
