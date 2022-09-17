@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { resolve } = require('path');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -13,9 +14,19 @@ const PORT = process.env.PORT || 3000
 const app = express();
 
 app.use(bodyParser.json());
-app.use('/', express.static(path.join(__dirname, 'images')));
+
+app.use('/', 
+    express.static(
+      resolve(
+        __dirname, 
+        '../images'
+    )
+  )
+);
+
+
 app.use('/', require('./routes/root'));
-//app.use('/indicesFilters', require('../src/routes/indicesfilters'));
+app.use('/indicesFilters', require('../src/routes/indicesfilters'));
 app.use('/auth', require('./routes/auth'));
 
 // app.all('*', (req, res) => {
