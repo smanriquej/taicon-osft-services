@@ -26,7 +26,7 @@ app.use('/',
 
 
 app.use('/', require('./routes/root'));
-app.use('/indicesFilters', require('../src/routes/indicesfilters'));
+app.use('/indicesFilters', require('./routes/indicesfilters'));
 app.use('/auth', require('./routes/auth'));
 
 // app.all('*', (req, res) => {
