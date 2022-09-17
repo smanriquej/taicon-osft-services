@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const indicesRoutes = require('./routes/indices');
 //const indicesFilterRoutes = require('./routes/indicesfilter');
-const authRoutes = require('./routes/auth');
+//const authRoutes = require('./routes/auth');
 const db = require('./db');
 
 const PORT = process.env.PORT || 3000 
@@ -14,16 +14,18 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, 'images')));
-app.use('/', require('./routes/indices'));
+app.use('/', require('./routes/root'));
+app.use('/indicesFilter', require('./routes/indicesfilter'));
+app.use('/auth', require('./routes/auth'));
 
-app.all('*', (req, res) => {
-  res.status(404)
-  if ( req.accepts('json')){
-      res.json({ message: "404 Not Found"})
-  } else {
-      res.type('txt').send('404 Not Found')
-  }
-})
+// app.all('*', (req, res) => {
+//   res.status(404)
+//   if ( req.accepts('json')){
+//       res.json({ message: "404 Not Found"})
+//   } else {
+//       res.type('txt').send('404 Not Found')
+//   }
+// })
 
 
 // const allowedOrigins = ["https://app-taicon-osft.netlify.app", "http://jorges-macbook-pro.local:3000", "http://localhost:3000"]
@@ -52,7 +54,7 @@ app.use('/indices', indicesRoutes);
 // app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
 //app.use('/indicesFilter', indicesFilterRoutes);
 // app.use('/.netlify/functions/', authRoutes);
-app.use('/auth', authRoutes);
+//app.use('/auth', authRoutes);
 
 db.initDb((err, db) => {
   if (err) {
