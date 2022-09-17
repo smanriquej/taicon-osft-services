@@ -1,3 +1,4 @@
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -6,6 +7,8 @@ const indicesRoutes = require('./routes/indices');
 //const indicesFilterRoutes = require('./routes/indicesfilter');
 const authRoutes = require('./routes/auth');
 const db = require('./db');
+
+const PORT = process.env.PORT || 3000 
 
 const app = express();
 
@@ -55,8 +58,8 @@ db.initDb((err, db) => {
   if (err) {
     console.log(err);
   } else {
-    console.log("http://localhost:3200");
-    app.listen(3200);
+    console.log("http://localhost", PORT);
+    app.listen(PORT);
   }
 });
 
