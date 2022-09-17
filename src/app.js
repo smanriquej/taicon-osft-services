@@ -6,7 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const indicesRoutes = require('./routes/indices');
-//const indicesFilterRoutes = require('./routes/indicesfilter');
+const indicesFilterRoutes = require('./routes/indicesfilter');
 const authRoutes = require('./routes/auth');
 const db = require('./db');
 
@@ -41,7 +41,7 @@ app.use('/', require('./routes/root'));
 // app.use('/.netlify/functions/indices', indicesRoutes);
 app.use('/indices', indicesRoutes);
 // app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
-//app.use('/indicesFilter', indicesFilterRoutes);
+app.use('/indicesFilter', indicesFilterRoutes);
 // app.use('/.netlify/functions/', authRoutes);
 app.use('/auth', authRoutes);
 
