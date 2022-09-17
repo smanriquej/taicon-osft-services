@@ -16,26 +16,26 @@ app.use(bodyParser.json());
 app.use('/images', express.static(path.join('backend/images')));
 
 
-const allowedOrigins = ["https://app-taicon-osft.netlify.app", "http://jorges-macbook-pro.local:3000", "http://localhost:3000"]
+// const allowedOrigins = ["https://app-taicon-osft.netlify.app", "http://jorges-macbook-pro.local:3000", "http://localhost:3000"]
 
-app.use(cors({
-  origin: allowedOrigins
-}));
+// app.use(cors({
+//   origin: allowedOrigins
+// }));
 
-app.use((req, res, next) => {
-  // Set CORS headers so that the React SPA is able to communicate with this server
-  res.setHeader('Access-Control-Allow-Origin', "*");
-  res.setHeader(
-    'Access-Control-Allow-Methods',
-    'GET,POST,PUT,PATCH,DELETE,OPTIONS'
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
+// app.use((req, res, next) => {
+//   // Set CORS headers so that the React SPA is able to communicate with this server
+//   res.setHeader('Access-Control-Allow-Origin', "*");
+//   res.setHeader(
+//     'Access-Control-Allow-Methods',
+//     'GET,POST,PUT,PATCH,DELETE,OPTIONS'
+//   );
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+//   next();
+// });
 
 // app.use('/.netlify/functions/indices', indicesRoutes);
 app.use('/indices', indicesRoutes);
