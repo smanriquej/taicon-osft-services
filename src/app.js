@@ -1,5 +1,4 @@
 require('dotenv').config();
-const { resolve } = require('path');
 const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -15,14 +14,7 @@ const app = express();
 
 app.use(bodyParser.json());
 
-app.use('/', 
-    express.static(
-      resolve(
-        __dirname, 
-        './public'
-    )
-  )
-);
+app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./routes/root'));
 app.use('/indices', require('./routes/indices'));
