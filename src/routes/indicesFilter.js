@@ -1,10 +1,8 @@
 const Router = require('express').Router;
-const express = require("express");
-// const mongodb = require('mongodb');
-const cors = require('cors');
-const app = express();
+//const mongodb = require('mongodb');
 
 const db = require('../db');
+
 const router = Router();
 
 router.get('/', async (req, res, next) => {
