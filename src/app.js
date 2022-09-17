@@ -4,7 +4,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const indicesRoutes = require('./routes/indices');
+//const indicesRoutes = require('./routes/indices');
 //const indicesFilterRoutes = require('./routes/indicesfilter');
 //const authRoutes = require('./routes/auth');
 const db = require('./db');
@@ -26,6 +26,7 @@ app.use('/',
 
 
 app.use('/', require('./routes/root'));
+app.use('/indices', require('./routes/indices'));
 app.use('/indicesFilters', require('./routes/indicesfilters'));
 app.use('/auth', require('./routes/auth'));
 
@@ -61,7 +62,7 @@ app.use('/auth', require('./routes/auth'));
 // });
 
 // app.use('/.netlify/functions/indices', indicesRoutes);
-app.use('/indices', indicesRoutes);
+//app.use('/indices', indicesRoutes);
 // app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
 //app.use('/indicesFilter', indicesFilterRoutes);
 // app.use('/.netlify/functions/', authRoutes);
@@ -76,6 +77,6 @@ db.initDb((err, db) => {
   }
 });
 
-// module.exports=app;
+module.exports=app;
 
 // module.exports.handler = serverless(app);
