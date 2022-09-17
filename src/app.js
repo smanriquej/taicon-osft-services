@@ -14,7 +14,7 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, 'images')));
-app.use('/', require('./routes/root'));
+app.use('/', require('./routes/indices'));
 
 app.all('*', (req, res) => {
   res.status(404)
@@ -58,7 +58,7 @@ db.initDb((err, db) => {
   if (err) {
     console.log(err);
   } else {
-    console.log("http://localhost", PORT);
+    console.log(`http://localhost:${PORT}`);
     app.listen(PORT);
   }
 });
