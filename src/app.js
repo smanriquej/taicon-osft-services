@@ -15,7 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, 'images')));
 app.use('/', require('./routes/root'));
-app.use('/indicesFilters', require('./routes/indicesfilters'));
+app.use('/indicesFilters', require('../src/routes/indicesfilters'));
 app.use('/auth', require('./routes/auth'));
 
 // app.all('*', (req, res) => {
