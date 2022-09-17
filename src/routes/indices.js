@@ -9,7 +9,7 @@ const ObjectId = mongodb.ObjectId;
 const router = Router();
 
 // Get list of indiceArr indiceArr
-router.get('^/$|/index(.html)?', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   const pipeline = [
     { $match: { cod_indice: "11200" } },
     // { $match: { _id: ObjectId("630d60caec209f450c38d55d") } },

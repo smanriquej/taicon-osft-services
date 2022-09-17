@@ -40,9 +40,9 @@ app.use('/images', express.static(path.join('backend/images')));
 // app.use('/.netlify/functions/indices', indicesRoutes);
 app.use('/indices', indicesRoutes);
 // app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
-app.use('/', indicesFilterRoutes);
+app.use('/indicesFilter', indicesFilterRoutes);
 // app.use('/.netlify/functions/', authRoutes);
-app.use('/auth', authRoutes);
+app.use('/', authRoutes);
 
 db.initDb((err, db) => {
   if (err) {
