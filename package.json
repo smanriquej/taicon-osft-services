@@ -2,9 +2,9 @@
   "name": "backend-osft",
   "version": "1.0.0",
   "description": "",
-  "main": "./app/app.js",
+  "main": "./src/app.js",
   "scripts": {
-    "start": "node ./app/app.js"
+    "start": "node ./src/app.js"
   },
   "author": "",
   "license": "ISC",
