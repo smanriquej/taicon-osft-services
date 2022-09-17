@@ -19,6 +19,6 @@
     "serverless-http": "^3.0.2"
   },
   "engines": {
-    "node": ">=14 <15"
+    "node": "14.17.0"
   }
 }
