@@ -1,8 +1,5 @@
 const path = require('path');
-
 const express = require('express');
-// const serverless = require('serverless-http');
-const cors = require('cors');
 const bodyParser = require('body-parser');
 
 const indicesRoutes = require('./routes/indices');
@@ -15,6 +12,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, 'images')));
 app.use('/', require('./routes/root'));
+
+app.all('*', (req, res) => {
+  res.status(404)
+  if ( req.accepts('json')){
+      res.json({ message: "404 Not Found"})
+  } else {
+      res.type('txt').send('404 Not Found')
+  }
+})
 
 
 // const allowedOrigins = ["https://app-taicon-osft.netlify.app", "http://jorges-macbook-pro.local:3000", "http://localhost:3000"]
