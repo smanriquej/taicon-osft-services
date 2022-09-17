@@ -18,7 +18,7 @@ app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./routes/root'));
 app.use('/indices', require('./routes/indices'));
-//app.use('/indicesFilters', require('./src/routes/indicesfilters'));
+app.use('/indicesFilter', require('./routes/indicesfilter'));
 app.use('/auth', require('./routes/auth'));
 
 // app.all('*', (req, res) => {
@@ -51,13 +51,6 @@ app.use('/auth', require('./routes/auth'));
 //   // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 //   next();
 // });
-
-// app.use('/.netlify/functions/indices', indicesRoutes);
-//app.use('/indices', indicesRoutes);
-// app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
-//app.use('/indicesFilter', indicesFilterRoutes);
-// app.use('/.netlify/functions/', authRoutes);
-//app.use('/auth', authRoutes);
 
 db.initDb((err, db) => {
   if (err) {
