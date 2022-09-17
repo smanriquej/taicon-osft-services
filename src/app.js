@@ -14,6 +14,22 @@ const app = express();
 
 app.use(bodyParser.json());
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested, Content-Type, Accept Authorization"
+  )
+  if (req.method === "OPTIONS") {
+    res.header(
+      "Access-Control-Allow-Methods",
+      "POST, PUT, PATCH, GET, DELETE"
+    )
+    return res.status(200).json({})
+  }
+  next()
+})
+
 app.use('/', express.static(path.join(__dirname, 'public')))
 
 app.use('/', require('./routes/root'));
@@ -36,21 +52,6 @@ app.use('/auth', require('./routes/auth'));
 // app.use(cors({
 //   origin: allowedOrigins
 // }));
-
-// app.use((req, res, next) => {
-//   // Set CORS headers so that the React SPA is able to communicate with this server
-//   res.setHeader('Access-Control-Allow-Origin', "*");
-//   res.setHeader(
-//     'Access-Control-Allow-Methods',
-//     'GET,POST,PUT,PATCH,DELETE,OPTIONS'
-//   );
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   // res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-//   next();
-// });
 
 db.initDb((err, db) => {
   if (err) {
