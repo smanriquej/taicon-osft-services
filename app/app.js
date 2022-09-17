@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 //const indicesRoutes = require('./routes/indices');
 //const indicesFilterRoutes = require('./routes/indicesfilter');
 //const authRoutes = require('./routes/auth');
-const db = require('./src/db');
+const db = require('../src/db');
 
 const PORT = process.env.PORT || 3000 
 
@@ -24,10 +24,10 @@ app.use('/',
   )
 );
 
-app.use('/', require('./src/routes/root'));
-app.use('/indices', require('./src/routes/indices'));
-app.use('/indicesFilters', require('./src/routes/indicesfilters'));
-app.use('/auth', require('./src/routes/auth'));
+app.use('/', require('../src/routes/root'));
+app.use('/indices', require('../src/routes/indices'));
+app.use('/indicesFilters', require('../src/routes/indicesfilters'));
+app.use('/auth', require('../src/routes/auth'));
 
 // app.all('*', (req, res) => {
 //   res.status(404)
