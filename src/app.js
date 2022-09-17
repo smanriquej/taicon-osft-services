@@ -13,7 +13,8 @@ const db = require('./db');
 const app = express();
 
 app.use(bodyParser.json());
-app.use('/images', express.static(path.join('backend/images')));
+app.use('/', express.static(path.join(__dirname, 'images')));
+app.use('/', require('./routes/root'));
 
 
 // const allowedOrigins = ["https://app-taicon-osft.netlify.app", "http://jorges-macbook-pro.local:3000", "http://localhost:3000"]
@@ -42,7 +43,7 @@ app.use('/indices', indicesRoutes);
 // app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
 app.use('/indicesFilter', indicesFilterRoutes);
 // app.use('/.netlify/functions/', authRoutes);
-app.use('/', authRoutes);
+app.use('/auth', authRoutes);
 
 db.initDb((err, db) => {
   if (err) {
