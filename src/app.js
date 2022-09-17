@@ -40,14 +40,15 @@ app.use('/images', express.static(path.join('backend/images')));
 // app.use('/.netlify/functions/indices', indicesRoutes);
 app.use('/indices', indicesRoutes);
 // app.use('/.netlify/functions/indicesFilter', indicesFilterRoutes);
-app.use('/indicesFilter', indicesFilterRoutes);
+app.use('/', indicesFilterRoutes);
 // app.use('/.netlify/functions/', authRoutes);
-app.use('/', authRoutes);
+app.use('/auth', authRoutes);
 
 db.initDb((err, db) => {
   if (err) {
     console.log(err);
   } else {
+    console.log("http://localhost:3200");
     app.listen(3200);
   }
 });
