@@ -30,7 +30,7 @@ app.use((req, res, next) => {
   next()
 })
 
-app.use('/', express.static(path.join(__dirname, 'public')))
+app.use('/', express.static(path.join(__dirname,'..', 'public')));
 
 app.use('/', require('./routes/root'));
 app.use('/indices', require('./routes/indices'));
