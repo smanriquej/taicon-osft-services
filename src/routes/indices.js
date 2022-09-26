@@ -199,18 +199,26 @@ router.get('/:id', async (req, res, next) => {
     },
     {
       $lookup: {
-        from: 'cuoc_ocupacion_area_cualificacion13',
-        localField: 'cod_indice',
-        foreignField: "ocupacion",
-        as: "ocupacion_area_cualificacion13"
-      }
-    },
-    {
-      $lookup: {
         from: 'cuoc_equivalencia10',
         localField: 'cod_indice',
         foreignField: "ocupacion",
         as: "equivalencia10"
+      }
+    },
+    {
+      $lookup: {
+        from: 'cuoc_ocupacion_area_cualificacion13',
+        localField: 'cod_indice',
+        foreignField: "ocupacion",
+        as: "ocupacion_area_cualificacion13"
+      },
+    },
+    {
+      $lookup: {
+        from: 'cuoc_area_cualificacion08',
+        localField: 'ocupacion_area_cualificacion13.id_area_conocimiento',
+        foreignField: '_id',
+        as: 'areas',
       }
     },
     {
@@ -240,13 +248,16 @@ router.get('/:id', async (req, res, next) => {
         "funciones04.fuente_cno": 1,
         "ocupacion_afin07.ocupacion_afin": 1,
         "ocupacion_afin07.nombre_ocupacion_afin": 1,
-        "ocupacion_area_cualificacion13.codigo_area_cualificacion": 1,
-        "ocupacion_area_cualificacion13.area_cualificacion": 1,
         "equivalencia10.codigo_ciuo": 1,
         "equivalencia10.observacion_ciuo": 1,
         "equivalencia10.codigo_cno": 1,
         "equivalencia10.observacion_cno": 1,
-        "equivalencia10.validacion": 1
+        "equivalencia10.validacion": 1,
+        "areas._id": 1,
+        "areas.sigla_area_cualificacion": 1,
+        "areas.nombre_area_cualificacion": 1,
+        "areas.id_area_cualificacion": 1,
+        "areas.descripcion_area_cualificacion": 1,
       }
     }
   ];
