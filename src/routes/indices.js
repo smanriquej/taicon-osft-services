@@ -55,8 +55,8 @@ router.get('/:id', async (req, res, next) => {
     {
       $lookup: {
         from: 'cuoc_destreza06',
-        localField: 'cod_indice',
-        foreignField: "ocupacion",
+        localField: 'ocupacionDestreza12.id_destreza',
+        foreignField: "id_destreza",
         as: "destreza06"
       }
     },
@@ -123,6 +123,7 @@ router.get('/:id', async (req, res, next) => {
         "denominaciones03.codigo_ciuo": 1,
         "destreza06.id_destreza": 1,
         "destreza06.nombre_destreza": 1,
+        "destreza06.descripcion_destreza": 1,
         "funciones04.consecutivo_funcion": 1,
         "funciones04.redaccion_funcion": 1,
         "funciones04.fuente_ciuo": 1,
