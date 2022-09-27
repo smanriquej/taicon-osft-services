@@ -1,57 +1,34 @@
 require('dotenv').config();
 const path = require('path');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 
-//const indicesRoutes = require('./routes/indices');
-//const indicesFilterRoutes = require('./routes/indicesfilter');
-//const authRoutes = require('./routes/auth');
+const indicesRoutes = require('./routes/indices');
+const indicesFilterRoutes = require('./routes/filter');
+const authRoutes = require('./routes/auth');
 const db = require('./db');
 
-const PORT = process.env.PORT || 3000 
-
+const PORT = process.env.PORT || 3200 
 const app = express();
 
 app.use(bodyParser.json());
+app.use('/images', express.static(path.join('backend/images')));
 
 app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested, Content-Type, Accept Authorization"
-  )
-  if (req.method === "OPTIONS") {
-    res.header(
-      "Access-Control-Allow-Methods",
-      "POST, PUT, PATCH, GET, DELETE"
-    )
-    return res.status(200).json({})
-  }
-  next()
-})
+  // Set CORS headers so that the React SPA is able to communicate with this server
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader(
+    'Access-Control-Allow-Methods',
+    'GET,POST,PUT,PATCH,DELETE,OPTIONS'
+  );
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
 
-//app.use('/', express.static(path.join(__dirname,'..', 'public')));
-
-//app.use('/', require('./routes/root'));
-app.use('/indices', require('./routes/indices'));
-app.use('/indicesFilter', require('./routes/filter'));
-app.use('/', require('./routes/auth'));
-
-// app.all('*', (req, res) => {
-//   res.status(404)
-//   if ( req.accepts('json')){
-//       res.json({ message: "404 Not Found"})
-//   } else {
-//       res.type('txt').send('404 Not Found')
-//   }
-// })
-
-
-// const allowedOrigins = ["https://app-taicon-osft.netlify.app", "http://jorges-macbook-pro.local:3000", "http://localhost:3000"]
-
-// app.use(cors({
-//   origin: allowedOrigins
-// }));
+app.use('/indices', indicesRoutes);
+app.use('/indicesFilter', indicesFilterRoutes);
+app.use('/', authRoutes);
 
 db.initDb((err, db) => {
   if (err) {
@@ -61,7 +38,3 @@ db.initDb((err, db) => {
     app.listen(PORT);
   }
 });
-
-module.exports=app;
-
-// module.exports.handler = serverless(app);
