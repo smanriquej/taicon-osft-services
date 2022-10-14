@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 
 const indicesRoutes = require('./routes/indices');
 const indicesFilterRoutes = require('./routes/filter');
+const areasFilterRoutes = require('./routes/areafilter');
+const indicesAreaRoutes = require('./routes/indicesarea');
 const authRoutes = require('./routes/auth');
 const db = require('./db');
 
@@ -28,6 +30,8 @@ app.use((req, res, next) => {
 
 app.use('/indices', indicesRoutes);
 app.use('/indicesFilter', indicesFilterRoutes);
+app.use('/areasFilter', areasFilterRoutes);
+app.use('/indicesArea', indicesAreaRoutes);
 app.use('/', authRoutes);
 
 db.initDb((err, db) => {
